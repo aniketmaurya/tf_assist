@@ -1,3 +1,6 @@
+from .utils import subfolder_count
+
+
 from pathlib import Path
 from tensorflow import keras
 import tensorflow.keras.applications as models
