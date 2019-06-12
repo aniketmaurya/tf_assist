@@ -3,12 +3,12 @@ from .utils import subfolder_count
 
 from pathlib import Path
 from tensorflow import keras
-import tensorflow.keras.applications as models
+from tensorflow.keras import applications as models
 import scipy
 
 class ImageDataBunch:
     ''' Provides methods for loading images
-    Dep: tf.keras, scipy, pathlib.Path()
+    Dep: tf.keras, scipy, pathlib.Path(), tf_assist.vision.utils.subfolder_count()
     '''
     def __init__(self, image_shape:tuple, num_classes:int=None):
         
@@ -42,7 +42,7 @@ class ImageDataBunch:
         
         # count classes by looking at subfolder count
         num_subfolders = subfolder_count(self.train_path)
-        if num_subfolders > 2:
+        if num_subfolders >= 2:
             class_mode = 'categorical'
         else:
             class_mode = 'binary'
